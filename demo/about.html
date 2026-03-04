@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - Quantum Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="neon-waves"></canvas>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">
+        <div class="logo-box"></div>
+        GOJO Store
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <input type="text" class="search-bar" placeholder="Search products...">
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h2>About</h2>
+    <h1>GOJO Store</h1>
+    <p>
+        We're not just an e-commerce platform. We're pioneers in quantum-enhanced digital commerce,
+        combining advanced technology with human-centered design to create the future of online shopping.
+    </p>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+    <div class="mission-text">
+        <h2>Our <span>Mission</span></h2>
+        <p>
+            To revolutionize the e-commerce landscape by seamlessly integrating cutting-edge technology
+            with intuitive design, creating a shopping experience that's not just efficient, but extraordinary.
+        </p>
+        <p>
+            We believe that technology should enhance human connection, not replace it. Every feature we build,
+            every algorithm we deploy, is designed to make your shopping journey more personal,
+            more secure, and more enjoyable.
+        </p>
+    </div>
+
+    <div class="mission-img">
+        <img src="images/about.avif" alt="City">
+    </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+    <h2>Our <span>Values</span></h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Innovation First</h3>
+            <p>We leverage cutting-edge technology to revolutionize the shopping experience.</p>
+        </div>
+
+        <div class="card">
+            <h3>Customer Centric</h3>
+            <p>Every decision we make is driven by our commitment to customer satisfaction.</p>
+        </div>
+
+        <div class="card">
+            <h3>Speed & Efficiency</h3>
+            <p>Quantum-powered logistics ensure your orders arrive faster than ever.</p>
+        </div>
+
+        <div class="card">
+            <h3>Quality Assured</h3>
+            <p>We partner only with trusted brands to guarantee product excellence.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Join the Quantum Revolution</h2>
+    <p>
+        Experience the future of shopping today. Discover products, connect with brands,
+        and enjoy a seamless e-commerce experience like never before.
+    </p>
+    <button>Start Shopping</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-top">
+        <div class="footer-col">
+            <h4>Quantum Store</h4>
+            <p class="footer-desc">
+                Experience the future of e-commerce. Advanced technology meets seamless shopping.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Shop</h4>
+            <a href="#">All Products</a>
+            <a href="#">New Arrivals</a>
+            <a href="#">Best Sellers</a>
+            <a href="#">Special Offers</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Support</h4>
+            <a href="#">Help Center</a>
+            <a href="#">Shipping Info</a>
+            <a href="#">Returns</a>
+            <a href="#">Track Order</a>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © 2026 Quantum Store. All rights reserved.
+    </div>
+</footer>
+
+<script>
+const canvas = document.getElementById("neon-waves");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let mouseX = 0;
+let mouseY = 0;
+
+window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+let time = 0;
+
+function drawWave(offset, color, amplitude, frequency) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+
+    for (let x = 0; x < canvas.width; x++) {
+        let y = canvas.height / 2 +
+                Math.sin(x * frequency + time + offset) * amplitude +
+                Math.sin(mouseX * 0.01) * 20;
+
+        ctx.lineTo(x, y);
+    }
+
+    ctx.shadowBlur = 25;
+    ctx.shadowColor = color;
+    ctx.stroke();
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawWave(0, "#00ffff", 40, 0.01);
+    drawWave(2, "#ff00ff", 30, 0.015);
+    drawWave(4, "#00ff88", 25, 0.02);
+
+    time += 0.05;
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+
+
+</body>
+</html>
